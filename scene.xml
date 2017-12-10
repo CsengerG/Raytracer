@@ -2,7 +2,7 @@
 
 <scene>
     <!--RED-->
-    <shape type = "sphere" position = "20,20,5" radius = "5" color = "#dd0000" diffuse-coefficient = "0.35" specular-coefficient = "0.95" alpha = "100.0" reflective-coefficient = "0.35" />
+    <shape type = "sphere" position = "20,20,5" radius = "5" color = "#dd0000" diffuse-coefficient = "0.35" specular-coefficient = "0.95" alpha = "1000.0" reflective-coefficient = "0.35" />
 
     <!--BLUE-->
     <shape type = "sphere" position = "13,8,2" radius = "2" color = "#0066ee" diffuse-coefficient = "0.35" specular-coefficient = "0.4" alpha = "24.0" reflective-coefficient = "0.3" />
