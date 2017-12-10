@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<scene>
+    <!--RED-->
+    <shape type = "sphere" position = "20,20,5" radius = "5" color = "#dd0000" diffuse-coefficient = "0.35" specular-coefficient = "0.95" alpha = "100.0" reflective-coefficient = "0.35" />
+
+    <!--BLUE-->
+    <shape type = "sphere" position = "13,8,2" radius = "2" color = "#0066ee" diffuse-coefficient = "0.35" specular-coefficient = "0.4" alpha = "24.0" reflective-coefficient = "0.3" />
+
+    <!--GREEN-->
+    <shape type = "sphere" position = "7,13,3" radius = "3" color = "#33cc33" diffuse-coefficient = "0.35" specular-coefficient = "0.4" alpha = "96.0" reflective-coefficient = "0.3" />
+
+    <!--REFLECTIVE-->
+    <shape type = "sphere" position = "13,13,1.5" radius = "1.5" color = "#33cc33" diffuse-coefficient = "0.65" specular-coefficient = "4" alpha = "150" reflective-coefficient = "1.0" />
+
+    <shape type = "plane" distance = "0" normal = "0,0,1" diffuse-coefficient = "0.3" specular-coefficient = "0.00" color = "#111111" alpha= "3" reflective-coefficient = "0.1" />
+
+    <light type = "pointlight" position = "0,10,15" color = "#ffffff" />
+    <light type = "pointlight" position = "18,0,15" color = "#ffffff" />
+
+    <camera position = "0,0,10" direction = "1,1,-0.5" up-direction = "0,0,1" width = "1000" height = "1000"/>
+</scene>
