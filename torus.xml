@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<scene>
+    <shape type = "torus" r1="12" r2="3" diffuse-coefficient = "0.2" specular-coefficient = "0.5" color = "#ff00f0" alpha= "96.0" reflective-coefficient = "0.3" />
+
+    <shape type = "plane" distance="0" normal="0,0,1" diffuse-coefficient = "0.35" specular-coefficient = "0.5" color = "#333333" alpha= "96.0" reflective-coefficient = "0.35" />
+
+    <shape type = "sphere" radius = "2" position = "0,12,7" diffuse-coefficient = "0.35" specular-coefficient = "0.5" color = "#00ff00" alpha= "96.0" reflective-coefficient = "0.35" />
+
+    <light type = "pointlight" position = "0,0,15" color = "#ffffff" />
+
+    <!--<camera position = "-30,-30,15" direction = "1,1,-0.33" up-direction = "0,0,1" width = "500" height = "500" supersampling="on"/>-->
+    <camera position = "0,0,30" direction = "1,1,-100" up-direction = "0,0,1" width = "500" height = "500" supersampling="on"/>
+</scene>

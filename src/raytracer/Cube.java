@@ -15,4 +15,9 @@ public class Cube extends Shape {
     public Vector3D getSurfaceNormal(Vector3D point) {
         return null;
     }
+
+    @Override
+    public Vector3D getSurfaceColor(Vector3D point) {
+        return surfaceColor;
+    }
 }

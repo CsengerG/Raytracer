@@ -11,6 +11,7 @@ public class Camera {
     private Vector3D up_direction;
     private Vector3D position;
     private int width, height;
+    private boolean supersampling;
 
     public int getWidth(){ return width; }
     public int getHeight(){ return height; }
@@ -37,6 +38,9 @@ public class Camera {
                     break;
                 case "height":
                     height = Integer.parseInt(attr.getValue());
+                    break;
+                case "supersampling":
+                    supersampling = attr.getValue().equals("on");
                     break;
             }
         }
@@ -67,17 +71,19 @@ public class Camera {
                 shootedRays[x][y].add(new Ray(position, rayDirection));
 
                 // shoot several other rays
-                for(int i = 0; i < 8; ++i) {
-                    Vector3D xRadius = right_unit.scale(0.5);
-                    Vector3D yRadius = up_unit.scale(0.5);
+                if(supersampling) {
+                    for (int i = 0; i < 8; ++i) {
+                        Vector3D xRadius = right_unit.scale(0.5);
+                        Vector3D yRadius = up_unit.scale(0.5);
 
-                    double xRandom = Math.random()*2 - 1.0;
-                    double yRandom = Math.random()*2 - 1.0;
+                        double xRandom = Math.random() * 2 - 1.0;
+                        double yRandom = Math.random() * 2 - 1.0;
 
-                    Vector3D randomPointInPixel = pixelCenter.add( xRadius.scale(xRandom) ).add( yRadius.scale(yRandom) );
-                    Vector3D randomRayDirection = randomPointInPixel.subtract(position).normalize();
+                        Vector3D randomPointInPixel = pixelCenter.add(xRadius.scale(xRandom)).add(yRadius.scale(yRandom));
+                        Vector3D randomRayDirection = randomPointInPixel.subtract(position).normalize();
 
-                    shootedRays[x][y].add(new Ray(position, randomRayDirection) );
+                        shootedRays[x][y].add(new Ray(position, randomRayDirection));
+                    }
                 }
             }
         }

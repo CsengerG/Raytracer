@@ -62,6 +62,21 @@ public class Vector3D {
         return v.scale( 2 * this.dot(v) ).subtract(this);
     }
 
+    // anticlockwise rotation around x
+    public Vector3D rotateX(double theta){
+        return new Vector3D(x, y * Math.cos(theta) - z * Math.sin(theta), y * Math.sin(theta) + z * Math.cos(theta));
+    }
+
+    // anticlockwise rotation around y
+    public Vector3D rotateY(double theta){
+        return new Vector3D(x * Math.cos(theta) + z * Math.sin(theta), y, -x * Math.sin(theta) + z * Math.cos(theta));
+    }
+
+    // anticlockwise rotation around z
+    public Vector3D rotateZ(double theta){
+        return new Vector3D(x * Math.cos(theta) - y * Math.sin(theta), x * Math.sin(theta) + y * Math.cos(theta), z);
+    }
+
     public Vector3D addIllumination(Vector3D v){
         return new Vector3D(Double.min(v.x+x, 1.0), Double.min(v.y+y,1.0), Double.min(v.z+z,1.0));
     }
@@ -88,5 +103,9 @@ public class Vector3D {
         int blue = (int)(v.z*255.0);
 
         return red*256*256 + green*256 + blue;
+    }
+
+    public String show (){
+        return "Vector3D: x = " + x + " y = " + y + " z = " + z + " magn = " + this.magnitude();
     }
 }

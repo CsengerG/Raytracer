@@ -2,21 +2,27 @@
 
 <scene>
     <!--RED-->
-    <shape type = "sphere" position = "20,20,5" radius = "5" color = "#dd0000" diffuse-coefficient = "0.35" specular-coefficient = "0.95" alpha = "1000.0" reflective-coefficient = "0.35" />
+    <shape type = "sphere" position = "-9,13,5" radius = "5" color = "#dd0000" diffuse-coefficient = "0.35" specular-coefficient = "0.95" alpha = "1000.0" reflective-coefficient = "0.35" />
 
     <!--BLUE-->
-    <shape type = "sphere" position = "13,8,2" radius = "2" color = "#0066ee" diffuse-coefficient = "0.35" specular-coefficient = "0.4" alpha = "24.0" reflective-coefficient = "0.3" />
+    <shape type = "sphere" position = "7.3,5,2" radius = "2" color = "#0066ee" diffuse-coefficient = "0.35" specular-coefficient = "0.4" alpha = "24.0" reflective-coefficient = "0.3" />
 
     <!--GREEN-->
-    <shape type = "sphere" position = "7,13,3" radius = "3" color = "#33cc33" diffuse-coefficient = "0.35" specular-coefficient = "0.4" alpha = "96.0" reflective-coefficient = "0.3" />
+    <shape type = "sphere" position = "5,-15,3" radius = "3" color = "#33cc33" diffuse-coefficient = "0.35" specular-coefficient = "0.4" alpha = "96.0" reflective-coefficient = "0.3" />
 
     <!--REFLECTIVE-->
-    <shape type = "sphere" position = "13,13,1.5" radius = "1.5" color = "#33cc33" diffuse-coefficient = "0.65" specular-coefficient = "4" alpha = "150" reflective-coefficient = "1.0" />
+    <!--<shape type = "sphere" position = "13,13,1.5" radius = "1.5" color = "#33cc33" diffuse-coefficient = "0.65" specular-coefficient = "4" alpha = "150" reflective-coefficient = "1.0" />-->
 
-    <shape type = "plane" distance = "0" normal = "0,0,1" diffuse-coefficient = "0.3" specular-coefficient = "0.00" color = "#111111" alpha= "3" reflective-coefficient = "0.1" />
+    <shape type = "plane" distance = "0" normal = "0,0,1" texture="textures/black-white.png" diffuse-coefficient = "0.3" specular-coefficient = "0.00" color = "#111111" alpha= "96.0" reflective-coefficient = "0.1" />
+    <shape type = "plane" distance = "50" normal = "1,1,0" diffuse-coefficient = "1.0" specular-coefficient = "0.00" color = "#ffffff" alpha= "0.0" reflective-coefficient = "0.9" />
 
-    <light type = "pointlight" position = "0,10,15" color = "#ffffff" />
-    <light type = "pointlight" position = "18,0,15" color = "#ffffff" />
+    <shape type = "cylinder" position = "20,-4,2" orientation="1,0,0" radius="2" height = "8" diffuse-coefficient = "0.3" specular-coefficient = "0.1" color = "#ffffff" alpha= "96.0" reflective-coefficient = "0.1" />
+    <shape type = "torus" r1="9" r2="2" position="0,0,11" orientation="1,0.2,0" diffuse-coefficient = "0.65" specular-coefficient = "0.75" color = "#a020f0" alpha= "96.0" reflective-coefficient = "0.5" />
+    <shape type = "torus" r1="9" r2="2" position="5,11,11" orientation="0,0.0,1" diffuse-coefficient = "0.65" specular-coefficient = "0.75" color = "#ffff00" alpha= "96.0" reflective-coefficient = "0.5" />
 
-    <camera position = "0,0,10" direction = "1,1,-0.5" up-direction = "0,0,1" width = "1000" height = "1000"/>
+    <light type = "pointlight" position = "0,25,25" color = "#ffffff" />
+    <light type = "pointlight" position = "0,0,25" color = "#ffffff" />
+    <light type = "pointlight" position = "0,-25,25" color = "#ffffff" />
+
+    <camera position = "-28,-28,38" direction = "1,1,-0.65" up-direction = "0,0,1" width = "1000" height = "1000" supersampling="on"/>
 </scene>

@@ -43,6 +43,9 @@ public class Scene {
                             case "torus":
                                 sceneObjects.add(new Torus(e));
                                 break;
+                            case "cylinder":
+                                sceneObjects.add(new Cylinder(e));
+                                break;
                             default:
                                 throw new RuntimeException("Can't put a " + shapeType + " on the scene");
                         }
@@ -93,7 +96,7 @@ public class Scene {
         RayHit closestHit = null;
 
         for(Shape shape: sceneObjects) {
-            if (shape.intersection(ray) != null) {
+            if (shape.intersection(ray).doesExist()) {
                 RayHit rh = shape.intersection(ray);
                 double distance = rh.getHitPosition().subtract(camera.getPosition()).magnitude();
 
@@ -105,7 +108,8 @@ public class Scene {
         }
 
         if( closestHit != null ) {
-            return illuminate(closestHit, 5);
+            Vector3D retColor = illuminate(closestHit, 5);
+            return retColor;
         }
 
         return new Vector3D();
@@ -115,14 +119,13 @@ public class Scene {
         if(hit == null) return new Vector3D();
 
         double epsilon = 0.0001;
-        Vector3D Cdiff = hit.getObjectHit().getSurfaceColor();
-        Vector3D Ia = new Vector3D(0.25, 0.25, 0.25);
+        Vector3D Cdiff = hit.getObjectHit().getSurfaceColor(hit.getHitPosition());
+        Vector3D Ia = new Vector3D(0.35, 0.35, 0.35);
 
         // add ambient
         Vector3D illumination = Cdiff.scale(Ia);
 
         Vector3D P = hit.getHitPosition();
-
         Vector3D N = hit.getObjectHit().getSurfaceNormal(P).normalize();
         Vector3D V = hit.getOrigin().subtract(P).normalize();
 
@@ -137,7 +140,8 @@ public class Scene {
             Vector3D R = L.reflectIn(N).normalize();
 
             Vector3D diffComp = Cdiff.scale(I).scale( Double.max(0.0, N.dot(L)) ).scale(kd);
-            Vector3D specularComp = Cdiff.scale(I).scale( Double.max(0.0, Math.pow( R.dot(V), alpha ))).scale(ks);
+            Vector3D specularComp = Cdiff.scale(I).scale(ks).scale( Double.max(0.0, Math.pow( R.dot(V), alpha )));
+            //System.out.println(specularComp.show());
 
             double lightDist = currLight.getPosition().subtract(P).magnitude();
             Ray r = new Ray( L.scale(epsilon).add(P), L );
@@ -145,7 +149,7 @@ public class Scene {
             double closest = Double.MAX_VALUE;
 
             for(Shape shape: sceneObjects){
-                if( shape.intersection(r) != null ) {
+                if( shape.intersection(r).doesExist() ) {
                     Vector3D intPoint = shape.intersection(r).getHitPosition();
 
                     closest = Double.min(closest, intPoint.subtract(P).magnitude());
@@ -154,6 +158,8 @@ public class Scene {
 
             if(closest > lightDist) illumination = illumination.addIllumination(diffComp).addIllumination(specularComp);
         }
+
+        //System.out.println( hit.getObjectHit() + " " + illumination.show());
 
         if( recursionDepth == 0 ) return illumination;
         else {
@@ -172,13 +178,13 @@ public class Scene {
         RayHit rh = null;
 
         for(Shape shape: sceneObjects){
-            if( shape.intersection(ray) != null ) {
+            if( shape.intersection(ray).doesExist() ) {
                 Vector3D intPoint = shape.intersection(ray).getHitPosition();
                 double dist = intPoint.subtract(ray.getStartPoint()).magnitude();
 
                 if( dist < closest ){
                     closest = dist;
-                    rh = new RayHit(intPoint, shape.getSurfaceNormal(intPoint), ray.getStartPoint(), shape);
+                    rh = new RayHit(intPoint, ray.getStartPoint(), shape);
                 }
             }
         }

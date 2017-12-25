@@ -11,9 +11,10 @@ import javax.imageio.ImageIO;
 public class Raytracer {
 
     public static void main(String[] args) throws JDOMException, IOException {
+        //Scene scene = new Scene("scene.xml");
         Scene scene = new Scene("scene.xml");
 
-        writeArrayToImage(scene.getPixels(), "output.png");
+        writeArrayToImage(scene.getPixels(), "image.png");
     }
 
     public static void writeArrayToImage(int[][] pixels, String filename) throws IOException {

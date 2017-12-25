@@ -32,9 +32,7 @@ public abstract class Shape {
         }
     }
 
-    public Vector3D getSurfaceColor() {
-        return surfaceColor;
-    }
+    public abstract Vector3D getSurfaceColor(Vector3D point);
 
     public double getDiffuseCoefficient() {
         return diffuseCoefficient;

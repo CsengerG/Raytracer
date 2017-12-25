@@ -8,7 +8,7 @@ public class Light {
     private Vector3D lightColor;
 
     public Light(Element e){
-        System.out.println("Putting a sphere to the scene");
+        System.out.println("Putting a light to the scene");
 
         for(Attribute attr: e.getAttributes()){
             switch(attr.getName()){
